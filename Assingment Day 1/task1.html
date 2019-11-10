@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 1</title>
+</head>
+<body>
+  <script>
+    function get_value(){
+      alert("Submitted");
+      var val = document.getElementById("my_id").value; 
+      document.getElementById('display').innerHTML = val;      
+    }
+  </script>
+  <form >
+    <input id="my_id" type="text" placeholder="Enter Your Name" >
+    <input type="button"  onclick="get_value()" value="submit">
+  </form>
+  <h1>
+    <div id="display" style="background-color:#eeee; width:150px;"> 
+    </div>
+  </h1>
+</body>
+</html>
