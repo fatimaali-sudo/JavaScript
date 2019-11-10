@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- <script src="push.js"></script> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Day 2 Assignment</title>
+</head>
+<body>
+  <script>
+    var data = Array ("user1" , " user2");
+    function push_user(username)
+    {
+
+      data.push(username);
+      alert("user pushed");
+    }
+    function display()
+    { 
+      var new2 = document.getElementById('data');
+      alert(new2);
+      for (var index = 0; index < data.length; index++) {
+        //new2.innerHTML += "<li>"+data[i] +"</li>";
+        document.write(data[i]+"<br>");
+      }
+      alert("Ended");
+
+    }
+    function add()
+    { 
+      alert("main fucntion");
+      var data = document.getElementById('name').value;
+      push_user(data);
+      display();
+    } 
+    
+
+    
+
+    
+        
+  </script>
+  <form action="#">
+    <input type="text" name="name" id="name">
+    <input type="button" value="Click me" onclick="add()">
+  </form>
+  <ul id="data">
+  </ul>
+</body>
+</html>
