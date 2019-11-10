@@ -1,2 +1,2 @@
 # JavaScript
-Some basic assignment of java script
+Some basic works  of java script
