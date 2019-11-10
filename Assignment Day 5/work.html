@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- This is to create paging using java script 
+and adding next and previous buttons
+for the navingation
+-->
+
+<head>
+
+    <style>
+        #numeric_pager a
+        {
+            text-decoration: underline;
+            color: blue;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        var students = [
+            { Id: 1, Name: "ali", Semester: "CPISM" },
+            { Id: 2, Name: "bilal", Semester: "DISM" },
+            { Id: 3, Name: "casim", Semester: "CPISM" },
+            { Id: 4, Name: "dany", Semester: "HDSEI" },
+            { Id: 5, Name: "eel", Semester: "DISM" },
+            { Id: 6, Name: "faiz", Semester: "DISM" },
+            { Id: 7, Name: "galal", Semester: "CPISM" },
+            { Id: 8, Name: "halal", Semester: "HDSEI" },
+            { Id: 9, Name: "imtiaz", Semester: "CPISM" },
+            { Id: 10, Name: "jhon", Semester: "DISM" },
+            { Id: 11, Name: "kami", Semester: "CPISM" }
+        ];
+        
+        var totalrecords = students.length; //11
+        var pagesize = 3;
+        var totalpages = Math.ceil(totalrecords / pagesize); //4
+
+        function next_page(){
+          var butt = document.getElementById('prev');
+            butt.style.visibility  = "visible";
+
+
+          
+          current_page=window.start;
+          if (current_page==6){
+            var butt = document.getElementById('next');
+            butt.style.visibility  = "hidden";
+            return ShowRecords(9,12);
+          }
+          else{
+            var butt = document.getElementById('next');
+            butt.style.visibility  = "visible";
+
+          }
+          if (current_page == 0)
+          {
+            return ShowRecords(3,6);
+          }
+          if (current_page == 3){
+            return ShowRecords(6,9);
+          }
+        }
+        function Previous_page()
+        {
+          current_page=window.start;
+          if (current_page==0){
+            
+            var butt = document.getElementById('prev');
+            butt.style.visibility  = "hidden";
+            return ShowRecords(0,3);
+          }
+         
+          if (current_page == 3)
+          {
+            var butt = document.getElementById('prev');
+            butt.style.visibility  = "hidden";
+            var butt = document.getElementById('next');
+            butt.style.visibility  = "visible";
+            
+            return ShowRecords(0,3);
+          }
+          if (current_page == 6){
+            var butt = document.getElementById('prev');
+            butt.style.visibility  = "visible";
+            var butt = document.getElementById('next');
+            butt.style.visibility  = "visible";
+            return ShowRecords(3,6);
+
+          }
+          if (current_page==9){
+            var butt = document.getElementById('prev');
+            butt.style.visibility  = "visible";
+            var butt = document.getElementById('next');
+            butt.style.visibility  = "visible";
+            return ShowRecords(6,9);
+
+          }
+          if (current_page ==12){
+            var butt = document.getElementById('prev');
+            butt.style.visibility  = "visible";
+            var butt = document.getElementById('next');
+            butt.style.visibility  = "hidden";
+            return ShowRecords(6,9);
+          }
+          else{
+            var butt = document.getElementById('next');
+            butt.style.visibility  = "visible";
+          }
+
+
+        }
+
+
+        function ShowRecords(start, end) {
+            createPaging();
+           
+            var result = document.getElementById('result');
+            result.innerHTML = "";
+
+            
+
+            for (var i = start; i < end; i++) {
+                if (i == 11){
+                  break;
+                }
+                result.innerHTML += "<tr><td>" + students[i].Id + "</td><td>" + students[i].Name + "</td><td>" + students[i].Semester + "</td></tr>";
+            }
+            if ( i== 3)
+            {
+              var butt = document.getElementById('prev');
+              butt.style.visibility  = "hidden";
+            }
+            if (i == 11)
+            {
+              var butt = document.getElementById('next');
+              butt.style.visibility  = "hidden";
+            }
+            else
+            {
+              document.getElementById('next').style.visibility  = "visible";
+            }
+            
+            window.start = start;
+            
+           
+        }
+        function createPaging() {
+            var pager = document.getElementById('numeric_pager');
+            pager.innerHTML = "";
+            var start = 0;
+      
+            var end = start + pagesize;
+            
+            
+            for (var i = 1; i <=  totalpages; i++)
+            {                
+                pager.innerHTML += "<a onclick='ShowRecords("+start+","+end+")' >" +  i+ "</a> ";
+                start += 3;  
+                end = start + pagesize;                            
+            }
+            
+
+        }
+    </script>
+</head>
+
+<body onload="ShowRecords(0, 3)">
+    <label>Search</label>
+    <input type="text" id="keyword" />
+
+    <table border="1" style="width: 100%">
+        <tbody id="result">
+
+        </tbody>
+
+
+    </table>
+    <div id="pager">
+        <span><input style="visibility: hidden" id ="prev" type="button" onclick="Previous_page()" value="Previous"></span>
+
+        <span id="numeric_pager">
+
+
+
+
+        </span>
+
+        <span><input id="next" type="button" onclick="next_page()" value="Next">
+
+        </span>
+    </div>
+</body>
+
+</html>
